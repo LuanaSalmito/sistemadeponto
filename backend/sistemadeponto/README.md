@@ -37,7 +37,6 @@ Aqui onde eu encontrei e você pode encontrar mais exemplos:
 - 🍱 :bento: **Adicionar ou atualizar assets**  
   **Uso**: Quando você adiciona ou atualiza recursos gráficos, como imagens, ícones ou fontes.
 
-
 - 🌱 :seedling: **Adicionar ou atualizar arquivos de seed**  
   **Uso**: Quando você adiciona ou atualiza arquivos de seed para inicializar dados no banco de dados.
 
