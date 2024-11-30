@@ -7,9 +7,7 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-SECRET_KEY = config('SECRET_KEY', default='secret')
-DEBUG = config('DEBUG', default=True, cast=bool)
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 ALLOWED_HOSTS = []
@@ -17,8 +15,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  
     "http://127.0.0.1:3000",
     "http://localhost:8000",
+    "http://127.0.0.1:8000",
 ]
 
+AUTH_USER_MODEL = "api.Usuario"
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -32,8 +32,14 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'drf_yasg', 
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
 ]
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -65,14 +71,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'sistemadeponto.wsgi.application'
 
 
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('DATABASE_ENGINE'),
-        'NAME': os.getenv('DATABASE_NAME'),
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-        'HOST': os.getenv('DATABASE_HOST'),
-        'PORT': os.getenv('DATABASE_PORT'),
+        'ENGINE': config('DATABASE_ENGINE'),
+        'NAME': config('DATABASE_NAME'),
+        'USER': config('DATABASE_USER'),
+        'PASSWORD': config('DATABASE_PASSWORD'),
+        'HOST': config('DATABASE_HOST'),
+        'PORT': config('DATABASE_PORT', cast=int),
     }
 }
 

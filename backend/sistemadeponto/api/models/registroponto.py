@@ -1,5 +1,7 @@
 from django.db import models
 from api.models.colaborador import Colaborador
+
+
 class RegistroPonto(models.Model):
 
     colaborador = models.ForeignKey(Colaborador, on_delete=models.CASCADE, related_name="registros")
