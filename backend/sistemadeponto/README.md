@@ -10,9 +10,6 @@ Aqui onde eu encontrei e você pode encontrar mais exemplos:
 - 🎨 :art: **Melhoria de estrutura / formato**  
   **Uso**: Quando você melhora a organização do código, refatora ou ajusta a estrutura para maior clareza ou legibilidade.
 
-- ⚡️ :zap: **Melhoria de performance**  
-  **Uso**: Quando você faz ajustes para melhorar o desempenho do sistema, como otimizações de código ou mudanças que aumentam a eficiência.
-
 - 🔥 :fire: **Remover código ou arquivos**  
   **Uso**: Quando você remove código obsoleto ou arquivos que não são mais necessários.
 
@@ -28,20 +25,14 @@ Aqui onde eu encontrei e você pode encontrar mais exemplos:
 - 🚀 :rocket: **Deploy**  
   **Uso**: Quando você realiza o deploy de novas versões ou atualizações para o ambiente de produção.
 
-
-
 - 🚧 :construction: **Em progresso**  
   **Uso**: Quando você está trabalhando em uma feature ou melhoria, mas ainda não está finalizada.
-
-
 
 - 📈 :chart_with_upwards_trend: **Adicionar ou atualizar análise ou rastreamento de código**  
   **Uso**: Quando você adiciona ou melhora ferramentas de análise ou rastreamento (como métricas ou logs).
 
 - 🔨 :hammer: **Adicionar ou atualizar scripts de desenvolvimento**  
   **Uso**: Quando você adiciona ou atualiza scripts usados no desenvolvimento, como scripts de build ou automação.
-
-
 
 - 🍱 :bento: **Adicionar ou atualizar assets**  
   **Uso**: Quando você adiciona ou atualiza recursos gráficos, como imagens, ícones ou fontes.
