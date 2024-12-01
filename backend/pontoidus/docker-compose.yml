@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_NAME=pontoidus
+      - DATABASE_USER=idus_dev
+      - DATABASE_PASSWORD=123456
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - SECRET_KEY=django-insecure-_itgr=&3a565*nnn6a+f!%_kmfm#xh(st%224_o!@sm-ac2qfh
+      - DEBUG=True
+
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=pontoidus
+      - POSTGRES_USER=idus_dev
+      - POSTGRES_PASSWORD=123456
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
