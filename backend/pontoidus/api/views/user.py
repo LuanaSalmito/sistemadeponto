@@ -9,11 +9,8 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    
-   
     permission_classes = [IsAuthenticated, IsAdminUser]
 
-   
     @action(detail=False, methods=['post'], url_path='login')
     def login_user(self, request):
         username = request.data.get('username')
@@ -24,33 +21,31 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response({"message": "Login bem-sucedido"}, status=status.HTTP_200_OK)
         return Response({"error": "Credenciais inválidas"}, status=status.HTTP_400_BAD_REQUEST)
 
-    # Endpoint para criar conta
     @action(detail=False, methods=['post'], url_path='criar-conta')
     def create_account(self, request):
-        # Permitir somente admins criarem contas
-        if not request.user.is_staff:  # Verifica se o usuário não é admin
+        if not request.user.is_authenticated:
+            return Response({"error": "Você precisa estar logado para criar contas."}, status=status.HTTP_401_UNAUTHORIZED)
+        
+        if not request.user.is_staff:
             return Response({"error": "Permissão negada. Somente administradores podem criar contas."}, status=status.HTTP_403_FORBIDDEN)
 
-        # Verifica se a conta admin já existe
         if User.objects.filter(username="admin").exists():
             return Response({"message": "Usuário admin já existe."}, status=status.HTTP_400_BAD_REQUEST)
 
         username = request.data.get('username')
         password = request.data.get('password')
-        
-        if username == "admin" and password == "123456":
-            
-            user = User.objects.create_superuser(username="admin", password="123456", email="admin@dominio.com")
-            user.save()
-            return Response({"message": "Conta de admin criada com sucesso"}, status=status.HTTP_201_CREATED)
-        
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        tipo_usuario = request.data.get('tipo_usuario', User.COLABORADOR)
 
-    
+        if tipo_usuario not in [User.ADMIN, User.COLABORADOR]:
+            return Response({"error": "Tipo de usuário inválido."}, status=status.HTTP_400_BAD_REQUEST)
+
+        if tipo_usuario == User.ADMIN:
+            return Response({"error": "Somente um administrador pode criar um usuário admin."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        user = User.objects.create_user(username=username, password=password, tipo_usuario=User.COLABORADOR)
+        
+        return Response({"message": "Conta de colaborador criada com sucesso."}, status=status.HTTP_201_CREATED)
+
     @action(detail=False, methods=['post'], url_path='logout')
     def logout_user(self, request):
         logout(request)

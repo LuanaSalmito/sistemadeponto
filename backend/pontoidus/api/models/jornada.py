@@ -12,22 +12,21 @@ class Jornada(models.Model):
     horas_faltantes = models.DecimalField(max_digits=5, decimal_places=2, default=0)
 
     def calcular_horas_excedentes(self):
-        
-        total_horas_trabalhadas = sum(ponto.duracao() for ponto in self.registros_ponto.all())
-        jornada_com_pausa = self.total_horas + (1 if self.tipo_jornada.pausa_obrigatoria else 0)
-        self.horas_excedentes = max(0, total_horas_trabalhadas - jornada_com_pausa)
+        total_horas_trabalhadas = sum(ponto.duracao().total_seconds() for ponto in self.registros_ponto.all())
+        jornada_com_pausa = self.total_horas * 3600 + (3600 if self.tipo_jornada.pausa_obrigatoria else 0) 
+        self.horas_excedentes = max(0, (total_horas_trabalhadas - jornada_com_pausa) / 3600)  
         self.save()
 
     def calcular_horas_faltantes(self):
-        total_horas_trabalhadas = sum(ponto.duracao() for ponto in self.registros_ponto.all())
-        jornada_com_pausa = self.total_horas + (1 if self.tipo_jornada.pausa_obrigatoria else 0)
-        self.horas_faltantes = max(0, jornada_com_pausa - total_horas_trabalhadas)
+        total_horas_trabalhadas = sum(ponto.duracao().total_seconds() for ponto in self.registros_ponto.all())
+        jornada_com_pausa = self.total_horas * 3600 + (3600 if self.tipo_jornada.pausa_obrigatoria else 0) 
+        self.horas_faltantes = max(0, (jornada_com_pausa - total_horas_trabalhadas) / 3600)  
         self.save()
 
     def __str__(self):
         return f"{self.user.username} - {self.data}"
 
     def validar_jornada_completa(self):
-        total_horas_trabalhadas = sum(ponto.duracao() for ponto in self.registros_ponto.all())
-        jornada_com_pausa = self.total_horas + (1 if self.tipo_jornada.pausa_obrigatoria else 0)
+        total_horas_trabalhadas = sum(ponto.duracao().total_seconds() for ponto in self.registros_ponto.all())
+        jornada_com_pausa = self.total_horas * 3600 + (3600 if self.tipo_jornada.pausa_obrigatoria else 0)  
         return total_horas_trabalhadas >= jornada_com_pausa

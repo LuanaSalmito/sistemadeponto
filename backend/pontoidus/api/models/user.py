@@ -22,7 +22,6 @@ class User(AbstractUser):
         blank=True
     )
 
-    # Permissões de usuário, se necessário (personalizando como seu código original)
     user_permissions = models.ManyToManyField(
         'auth.Permission',
         related_name='%(app_label)s_%(class)s_user_permissions',  

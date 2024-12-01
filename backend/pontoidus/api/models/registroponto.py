@@ -4,7 +4,6 @@ from api.services.calculos_jornada import CalculadoraJornada
 from datetime import timedelta
 
 class RegistroPonto(models.Model):
-
     ENTRADA = 'entrada'
     SAIDA = 'saida'
     PAUSA = 'pausa'
@@ -19,7 +18,6 @@ class RegistroPonto(models.Model):
     hora_entrada = models.DateTimeField(null=True, blank=True)
     hora_saida = models.DateTimeField(null=True, blank=True)
     tipo_ponto = models.CharField(max_length=20, choices=TIPO_PONTO_CHOICES)
-    hora_pausa = models.DurationField(null=True, blank=True)  
     volta_pausa = models.DateTimeField(null=True, blank=True)  
     horas_devidas = models.DurationField(default=timedelta(0))
     data_registro = models.DateTimeField(auto_now_add=True)
@@ -30,3 +28,10 @@ class RegistroPonto(models.Model):
     def calcular_debitos(self):
         """Chama a função do serviço de cálculos para calcular os débitos de horas."""
         CalculadoraJornada.atualizar_jornada(self)
+
+    def duracao(self):
+        if self.tipo_ponto == self.ENTRADA and self.hora_saida:
+            return self.hora_saida - self.hora_entrada
+        elif self.tipo_ponto == self.PAUSA and self.volta_pausa:
+            return self.volta_pausa - self.hora_entrada
+        return timedelta(0)
