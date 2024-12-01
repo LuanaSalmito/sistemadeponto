@@ -3,7 +3,7 @@
 	"tasks": [
 		{
 			"type": "Live Preview",
-			"workspacePath": "/home/luana/repos/sistemadeponto/backend",
+			"workspacePath": "/home/luana/repos/sistemadeponto/backend/pontoidus",
 			"problemMatcher": [],
 			"label": "Live Preview: Run Server",
 			"group": {
