@@ -1,6 +1,6 @@
-# app/services/calculos_jornada.py
+
 from datetime import timedelta
-from api.models.registroponto import RegistroPonto
+
 
 class CalculadoraJornada:
 

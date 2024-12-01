@@ -1,4 +1,3 @@
-# app/models/tipo_jornada.py
 from django.db import models
 
 class TipoJornada(models.Model):

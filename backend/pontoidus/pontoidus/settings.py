@@ -13,7 +13,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
 ]
 
-AUTH_USER_MODEL = "api.Usuario"
+AUTH_USER_MODEL = 'auth.User'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -56,7 +56,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'sistemadeponto.urls'
+ROOT_URLCONF = 'pontoidus.urls'
 
 TEMPLATES = [
     {
@@ -74,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'sistemadeponto.wsgi.application'
+WSGI_APPLICATION = 'pontoidus.wsgi.application'
 
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)

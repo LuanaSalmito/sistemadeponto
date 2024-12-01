@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.contrib.auth import authenticate, login, logout
 from api.models.user import User
-from api.serializer.user import UserSerializer
+from api.serializers.user import UserSerializer
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 class UserViewSet(viewsets.ModelViewSet):

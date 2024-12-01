@@ -3,13 +3,14 @@ from rest_framework.response import Response
 from rest_framework import status
 from api.models.jornada import Jornada
 from api.serializers.jornada import JornadaSerializer
+
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
-
+from api.permissions.todos import TodosPodemCriar, TodosPodemVer
 class JornadaViewSet(viewsets.ModelViewSet):
     queryset = Jornada.objects.all()
     serializer_class = JornadaSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated | TodosPodemVer | TodosPodemCriar]
 
     def get_queryset(self):
         user = self.request.user

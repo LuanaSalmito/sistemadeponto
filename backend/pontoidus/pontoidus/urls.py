@@ -12,8 +12,8 @@ schema_view = get_schema_view(
             "Documentação da API para gerenciar regimes de jornada de trabalho. "
             "Inclui endpoints para CRUD e suporte a filtros, ordenação e busca."
         ),
-        terms_of_service="https://example.com/terms/",
-        contact=openapi.Contact(email="seu_email@example.com"),
+        
+        contact=openapi.Contact(email="luanasalmito@gmail.com"),
         license=openapi.License(name="MIT License"),
     ),
     public=True,

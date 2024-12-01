@@ -1,7 +1,7 @@
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from api.models.user import User
-from api.serializer.user import UserSerializer
+from api.serializers.user import UserSerializer
 from rest_framework.decorators import action
 
 class AdminViewSet(viewsets.ModelViewSet):
