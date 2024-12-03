@@ -1,0 +1,17 @@
+.logo{
+    max-width: 150px;
+}
+.navbar-dark-blue {
+    background-color: #00305B !important;
+  }
+  .navbar-dark-blue .nav-link,
+  .navbar-dark-blue .btn {
+    color: white !important; 
+    font-size: 20px ;
+  }
+  
+  .navbar-dark-blue .nav-link:hover,
+  .navbar-dark-blue .btn:hover {
+    color: #ccc !important;
+  }
+ 

@@ -1,0 +1,66 @@
+.sidebar {
+  height: calc(100% - 60px) !important;
+  max-width: 280px !important;
+  padding-right: 0px !important;
+  overflow-x: hidden !important;
+}
+
+/* Estilizando a barra de rolagem */
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+
+  /* Largura da barra de rolagem */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #acacac;
+  /* Cor do "polegar" da barra de rolagem */
+  border-radius: 6px;
+  /* Borda arredondada para um visual mais moderno */
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: #919191;
+  /* Cor quando o "polegar" está em hover */
+}
+.sidebar .nav-link {
+  padding: 10px 0px !important;
+}
+
+/* Responsividade */
+
+.sidebar {
+  transition: width 0.3s;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.sidebar-toggle {
+  position: absolute;
+  top: 15px;
+  padding: 0px !important;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  line-height: 1 !important;
+  height: 40px !important;
+  padding: 15px !important;
+  padding-left: 0 !important;
+  left: 24px !important;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.sidebar-icon {
+}
+
+.main-content {
+    min-height: calc(100vh - 58px);
+}
+
+.logo-dashboard{
+  max-width: 200px;
+  margin-left:25px;
+}

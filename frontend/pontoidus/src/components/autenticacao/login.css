@@ -1,0 +1,11 @@
+.transparent-bg {
+    background-color: transparent !important;
+  }
+
+  .logo-img{
+    max-width: 190px;
+  }
+  .side-image{
+    max-width: 500px;
+    margin-left: 90px;
+  }
